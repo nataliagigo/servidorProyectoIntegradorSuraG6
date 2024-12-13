@@ -1,5 +1,7 @@
-package com.example.ServidorSura.modelos;
+package com.example.ServidorSura.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,14 @@ public class Vehiculo {
         private String color;
         private String descripcion;
         private Integer numerosIniestros;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id")
+    private Usuario usuario;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "planes")
+    private Planes planes;
 
     public Vehiculo() {
     }

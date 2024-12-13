@@ -1,8 +1,10 @@
-package com.example.ServidorSura.modelos;
+package com.example.ServidorSura.Modelos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 //Para cambiarle el nombre a la tabla y no sea el por defecto de la class
@@ -20,6 +22,11 @@ public class Usuario {
     private String direccion;
     private String correo;
     private LocalDate fechaNacimiento;
+
+    //LAS RELACIONES SERAN NUEVOS ATRIBUTOS
+    @OneToMany
+    @JsonManagedReference
+    private List<Vehiculo> vehiculos;
 
     public Usuario() {
     }
