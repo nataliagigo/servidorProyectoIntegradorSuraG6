@@ -22,7 +22,8 @@ public class Vehiculo {
     @JoinColumn(name = "fk_usuario", referencedColumnName = "id")
     private Usuario usuario;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "planes")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private Planes planes;
 
     public Vehiculo() {

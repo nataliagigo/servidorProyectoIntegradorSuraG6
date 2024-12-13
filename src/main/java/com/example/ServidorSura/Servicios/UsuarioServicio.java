@@ -51,6 +51,13 @@ public class UsuarioServicio {
         }
     }
 
+    public void eliminarUsuarios(Long id)throws Exception{
+        try{
+            iUsuarioRepositorio.deleteById(id);
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
+        }
+    }
 }
 
 

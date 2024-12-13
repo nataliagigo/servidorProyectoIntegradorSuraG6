@@ -14,8 +14,7 @@ public class Planes {
 
     private Float valor;
 
-    @OneToOne
-    @JoinColumn(name = "vehiculo_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "planes", cascade = CascadeType.ALL)
     private Vehiculo vehiculo;
 
     public Planes() {

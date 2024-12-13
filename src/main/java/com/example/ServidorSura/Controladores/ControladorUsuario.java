@@ -58,6 +58,19 @@ public class ControladorUsuario {
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
         }
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void eliminarPorId(@PathVariable Long id){
+        try{
+            usuarioServicio.eliminarUsuarios(id);
+        }catch(Exception error){
+
+        }
 
     }
-}
+
+
+
+            }

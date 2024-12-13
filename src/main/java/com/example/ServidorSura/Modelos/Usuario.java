@@ -21,25 +21,33 @@ public class Usuario {
     private String telefono;
     private String direccion;
     private String correo;
+    private String contrasena;
     private LocalDate fechaNacimiento;
 
     //LAS RELACIONES SERAN NUEVOS ATRIBUTOS
-    @OneToMany
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Vehiculo> vehiculos;
 
     public Usuario() {
     }
-    public Usuario(Long id, String cedula, String nombres, String telefono, String direccion, String correo, LocalDate fechaNacimiento) {
+    public Usuario(Long id, String cedula, String nombres, String telefono, String direccion, String correo, String contrasena, LocalDate fechaNacimiento) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
+        this.contrasena = contrasena;
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
     public Long getId() {
         return id;
     }
