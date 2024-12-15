@@ -7,13 +7,12 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "vehiculos")
 public class Vehiculo {
+
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
         private String placa;
         private String modelo;
         private String cilindraje;
-        private String color;
+        private String marca;
         private String descripcion;
         private Integer numerosIniestros;
 
@@ -23,28 +22,19 @@ public class Vehiculo {
     private Usuario usuario;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "placa", referencedColumnName = "id")
     private Planes planes;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(Long id, String placa, String modelo, String cilindraje, String color, String descripcion, Integer numerosIniestros) {
-        this.id = id;
+    public Vehiculo(String placa, String modelo, String cilindraje, String marca, String descripcion, Integer numerosIniestros) {
         this.placa = placa;
         this.modelo = modelo;
         this.cilindraje = cilindraje;
-        this.color = color;
+        this.marca = marca;
         this.descripcion = descripcion;
         this.numerosIniestros = numerosIniestros;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getPlaca() {
@@ -71,12 +61,12 @@ public class Vehiculo {
         this.cilindraje = cilindraje;
     }
 
-    public String getColor() {
-        return color;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setMarca(String color) {
+        this.marca = marca;
     }
 
     public String getDescripcion() {

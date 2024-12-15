@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class VehiculoServicio {
 
     //Consulta
     @GetMapping
-    public List<Vehiculo> ConsultaUsuarios () throws Exception{
+    public List<Vehiculo> ConsultaVehiculos () throws Exception{
         try{
             return iVehiculosRepositorio.findAll();
         }catch (Exception error){
@@ -37,9 +38,9 @@ public class VehiculoServicio {
     }
 
     @PostMapping
-    public Optional<Vehiculo> ConsultaIndividual(Long IdVehiculo) throws  Exception{
+    public Optional<Vehiculo> ConsultaIndividual(String placa) throws  Exception{
         try{
-            return iVehiculosRepositorio.findById(IdVehiculo);
+            return iVehiculosRepositorio.findById(placa);
         }catch (Exception error){
             throw new Exception(error.getMessage());
         }
@@ -47,10 +48,10 @@ public class VehiculoServicio {
 
 
     @GetMapping
-    public Vehiculo buscarVehiculoPorId(Long id) throws Exception{
+    public Vehiculo buscarVehiculoPorPlaca(String placa) throws Exception{
         try{
 
-            Optional<Vehiculo> vehiculoEncontrado=iVehiculosRepositorio.findById(id);
+            Optional<Vehiculo> vehiculoEncontrado=iVehiculosRepositorio.findById(placa);
             if(vehiculoEncontrado.isPresent()){
                 return vehiculoEncontrado.get();
             }else{
@@ -60,6 +61,21 @@ public class VehiculoServicio {
         }catch (Exception error){
             throw new Exception(error.getMessage());
         }
+    }
+
+    public List<String> generarPlanesSeguro(String marca, String modelo, int numeroSiniestros) {
+        List<String> planes = new ArrayList<>();
+        if (numeroSiniestros == 0) {
+            planes.add("Plan Básico - Cobertura mínima");
+            planes.add("Plan Intermedio - Cobertura media");
+            planes.add("Plan Premium - Cobertura total");
+        } else if (numeroSiniestros < 3) {
+            planes.add("Plan Intermedio - Cobertura ajustada");
+            planes.add("Plan Avanzado - Cobertura ampliada");
+        } else {
+            planes.add("Plan Riesgo Alto - Cobertura limitada");
+        }
+        return planes;
     }
 
 }
