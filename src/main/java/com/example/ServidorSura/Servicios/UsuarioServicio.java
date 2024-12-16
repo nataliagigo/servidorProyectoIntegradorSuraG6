@@ -2,9 +2,12 @@ package com.example.ServidorSura.Servicios;
 
 import com.example.ServidorSura.Modelos.Usuario;
 import com.example.ServidorSura.Repositorios.IUsuarioRepositorio;
+import com.example.ServidorSura.Repositorios.IVehiculosRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +19,12 @@ public class UsuarioServicio {
     @Autowired
     IUsuarioRepositorio iUsuarioRepositorio;
 
+    @Autowired
+    IVehiculosRepositorio iVehiculosRepositorio;
+
     //SE crean metodos para definir las operaciones
     //a realizar en la BD
+
 
     //1. Registar o guardar un usuario
     public Usuario guardarUsuario(Usuario datosUsuario)throws Exception{
